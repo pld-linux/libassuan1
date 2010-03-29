@@ -20,6 +20,7 @@ BuildRequires:	automake >= 1:1.10
 BuildRequires:	libtool
 BuildRequires:	pth-devel >= 1.2.0
 BuildRequires:	texinfo
+Conflicts:	libassuan
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -38,7 +39,8 @@ wydzielili ją.
 Summary:	Header files for assuan library
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki assuan
 Group:		Development/Libraries
-Requires:	%{name} = %{epoch}:%{version}-%{release}
+Conflicts:	libassuan-devel
+Requires:	%{name} = %{version}-%{release}
 
 %description devel
 Header files for assuan library.
@@ -50,7 +52,8 @@ Pliki nagłówkowe biblioteki assuan.
 Summary:	Static assuan library
 Summary(pl.UTF-8):	Statyczna biblioteka assuan
 Group:		Development/Libraries
-Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
+Conflicts:	libassuan-static
+Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static assuan library.
