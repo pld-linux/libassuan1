@@ -1,0 +1,14 @@
+--- libassuan-0.6.0/doc/assuan.texi.orig	2003-08-06 11:17:51.000000000 +0200
++++ libassuan-0.6.0/doc/assuan.texi	2003-08-10 12:01:59.383349680 +0200
+@@ -56,9 +56,9 @@
+ @c %**end of header
+ 
+ @ifnottex
+-@dircategory GNU Libraries
++@dircategory Libraries:
+ @direntry
+-* Assuan: (assuan).        An IPC library for non-persistent servers.
++* Assuan: (assuan).			An IPC library for non-persistent servers
+ @end direntry
+ This file documents the use and the internals of Assuan.
+ 
