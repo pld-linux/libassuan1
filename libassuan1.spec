@@ -1,6 +1,8 @@
 #
 # Conditional build:
 %bcond_without	static_libs	# don't build static library
+
+%define		realname	libassuan
 #
 Summary:	Assuan - an IPC library for non-persistent servers
 Summary(pl.UTF-8):	Assuan - biblioteka IPC dla serwerów nie działających ciągle
@@ -9,18 +11,18 @@ Version:	1.0.5
 Release:	1
 License:	LGPL v2.1+
 Group:		Libraries
-Source0:	ftp://ftp.gnupg.org/gcrypt/libassuan/%{name}-%{version}.tar.bz2
+Source0:	ftp://ftp.gnupg.org/gcrypt/libassuan/%{realname}-%{version}.tar.bz2
 # Source0-md5:	c2db0974fcce4401f48f3fa41c4edc5a
-Patch0:		libassuan-shared.patch
-Patch1:		libassuan-info.patch
-Patch2:		libassuan-ac.patch
+Patch0:		%{realname}-shared.patch
+Patch1:		%{realname}-info.patch
+Patch2:		%{realname}-ac.patch
 URL:		http://www.gnupg.org/related_software/libassuan/
 BuildRequires:	autoconf >= 2.61
 BuildRequires:	automake >= 1:1.10
 BuildRequires:	libtool
 BuildRequires:	pth-devel >= 1.2.0
 BuildRequires:	texinfo
-Conflicts:	libassuan
+Conflicts:	%{realname}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -39,7 +41,7 @@ wydzielili ją.
 Summary:	Header files for assuan library
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki assuan
 Group:		Development/Libraries
-Conflicts:	libassuan-devel
+Conflicts:	%{realname}-devel
 Requires:	%{name} = %{version}-%{release}
 
 %description devel
@@ -52,7 +54,7 @@ Pliki nagłówkowe biblioteki assuan.
 Summary:	Static assuan library
 Summary(pl.UTF-8):	Statyczna biblioteka assuan
 Group:		Development/Libraries
-Conflicts:	libassuan-static
+Conflicts:	%{realname}-static
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
