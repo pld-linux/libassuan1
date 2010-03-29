@@ -64,7 +64,7 @@ Static assuan library.
 Statyczna biblioteka assuan.
 
 %prep
-%setup -q
+%setup -q -n %{realname}-%{version}
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
