@@ -8,7 +8,7 @@ Summary:	Assuan - an IPC library for non-persistent servers
 Summary(pl.UTF-8):	Assuan - biblioteka IPC dla serwerów nie działających ciągle
 Name:		libassuan1
 Version:	1.0.5
-Release:	1
+Release:	2
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	ftp://ftp.gnupg.org/gcrypt/libassuan/%{realname}-%{version}.tar.bz2
@@ -16,13 +16,13 @@ Source0:	ftp://ftp.gnupg.org/gcrypt/libassuan/%{realname}-%{version}.tar.bz2
 Patch0:		%{realname}-shared.patch
 Patch1:		%{realname}-info.patch
 Patch2:		%{realname}-ac.patch
+Patch3:		%{name}-soname.patch
 URL:		http://www.gnupg.org/related_software/libassuan/
 BuildRequires:	autoconf >= 2.61
 BuildRequires:	automake >= 1:1.10
 BuildRequires:	libtool
 BuildRequires:	pth-devel >= 1.2.0
 BuildRequires:	texinfo
-Conflicts:	%{realname}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -41,7 +41,6 @@ wydzielili ją.
 Summary:	Header files for assuan library
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki assuan
 Group:		Development/Libraries
-Conflicts:	%{realname}-devel
 Requires:	%{name} = %{version}-%{release}
 
 %description devel
@@ -54,7 +53,6 @@ Pliki nagłówkowe biblioteki assuan.
 Summary:	Static assuan library
 Summary(pl.UTF-8):	Statyczna biblioteka assuan
 Group:		Development/Libraries
-Conflicts:	%{realname}-static
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
@@ -68,6 +66,7 @@ Statyczna biblioteka assuan.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %build
 %{__libtoolize}
@@ -102,25 +101,25 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README
-%attr(755,root,root) %{_libdir}/libassuan.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libassuan.so.0
-%attr(755,root,root) %{_libdir}/libassuan-pth.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libassuan-pth.so.0
+%attr(755,root,root) %{_libdir}/libassuan1.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libassuan1.so.0
+%attr(755,root,root) %{_libdir}/libassuan1-pth.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libassuan1-pth.so.0
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/libassuan-config
-%attr(755,root,root) %{_libdir}/libassuan.so
-%attr(755,root,root) %{_libdir}/libassuan-pth.so
-%{_libdir}/libassuan.la
-%{_libdir}/libassuan-pth.la
+%attr(755,root,root) %{_bindir}/libassuan1-config
+%attr(755,root,root) %{_libdir}/libassuan1.so
+%attr(755,root,root) %{_libdir}/libassuan1-pth.so
+%{_libdir}/libassuan1.la
+%{_libdir}/libassuan1-pth.la
 %{_includedir}/assuan.h
-%{_aclocaldir}/libassuan.m4
+%{_aclocaldir}/libassuan1.m4
 %{_infodir}/assuan.info*
 
 %if %{with static_libs}
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/libassuan.a
-%{_libdir}/libassuan-pth.a
+%{_libdir}/libassuan1.a
+%{_libdir}/libassuan1-pth.a
 %endif
