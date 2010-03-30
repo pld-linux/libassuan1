@@ -9,7 +9,16 @@ diff -Nru libassuan-1.0.5/configure.ac libassuan-1.0.5bs/configure.ac
 +AC_INIT([libassuan1], my_version[]m4_if(my_issvn,[yes],[-svn[]svn_revision]),
          [bug-libassuan@gnupg.org])
  # Note, that this is not yet available as a shared library.
- 
+
+@@ -148,7 +146,7 @@
+ AC_SUBST(NETLIBS)
+
+ # For src/libassuan-config.in
+-LIBASSUAN_CONFIG_LIB="-lassuan"
++LIBASSUAN_CONFIG_LIB="-lassuan1"
+ LIBASSUAN_CONFIG_CFLAGS=""
+ LIBASSUAN_CONFIG_API_VERSION="1"
+ LIBASSUAN_CONFIG_THREAD_MODULES=
 @@ -263,6 +263,6 @@
  AC_CONFIG_FILES([src/Makefile])
  AC_CONFIG_FILES([doc/Makefile])
