@@ -41,6 +41,7 @@ wydzielili ją.
 Summary:	Header files for assuan library
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki assuan
 Group:		Development/Libraries
+Conflicts:	%{realname}-devel
 Requires:	%{name} = %{version}-%{release}
 
 %description devel
