@@ -109,13 +109,13 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/libassuan1-config
+%attr(755,root,root) %{_bindir}/libassuan-config
 %attr(755,root,root) %{_libdir}/libassuan1.so
 %attr(755,root,root) %{_libdir}/libassuan1-pth.so
 %{_libdir}/libassuan1.la
 %{_libdir}/libassuan1-pth.la
 %{_includedir}/assuan.h
-%{_aclocaldir}/libassuan1.m4
+%{_aclocaldir}/libassuan.m4
 %{_infodir}/assuan.info*
 
 %if %{with static_libs}
