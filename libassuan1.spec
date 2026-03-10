@@ -8,20 +8,19 @@ Summary:	Assuan - an IPC library for non-persistent servers
 Summary(pl.UTF-8):	Assuan - biblioteka IPC dla serwerów nie działających ciągle
 Name:		libassuan1
 Version:	1.0.5
-Release:	2
+Release:	3
 License:	LGPL v2.1+
 Group:		Libraries
-Source0:	ftp://ftp.gnupg.org/gcrypt/libassuan/%{realname}-%{version}.tar.bz2
+Source0:	https://www.gnupg.org/ftp/gcrypt/libassuan/%{realname}-%{version}.tar.bz2
 # Source0-md5:	c2db0974fcce4401f48f3fa41c4edc5a
 Patch0:		%{realname}-shared.patch
 Patch1:		%{realname}-info.patch
 Patch2:		%{realname}-ac.patch
 Patch3:		%{name}-soname.patch
-URL:		http://www.gnupg.org/related_software/libassuan/
+URL:		https://www.gnupg.org/related_software/libassuan/
 BuildRequires:	autoconf >= 2.61
 BuildRequires:	automake >= 1:1.10
 BuildRequires:	libtool
-BuildRequires:	pth-devel >= 1.2.0
 BuildRequires:	texinfo
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -41,7 +40,6 @@ wydzielili ją.
 Summary:	Header files for assuan library
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki assuan
 Group:		Development/Libraries
-Conflicts:	%{realname}-devel
 Requires:	%{name} = %{version}-%{release}
 
 %description devel
@@ -75,6 +73,8 @@ Statyczna biblioteka assuan.
 %{__autoconf}
 %{__autoheader}
 %{__automake}
+export CFLAGS="%{rpmcflags} -std=gnu89"
+export MAKEINFO="%{_bindir}/makeinfo --force"
 %configure \
 	%{!?with_static_libs:--disable-static}
 %{__make}
@@ -102,18 +102,14 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README
-%attr(755,root,root) %{_libdir}/libassuan1.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libassuan1.so.0
-%attr(755,root,root) %{_libdir}/libassuan1-pth.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libassuan1-pth.so.0
+%{_libdir}/libassuan1.so.*.*.*
+%ghost %{_libdir}/libassuan1.so.0
 
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/libassuan-config
-%attr(755,root,root) %{_libdir}/libassuan1.so
-%attr(755,root,root) %{_libdir}/libassuan1-pth.so
+%{_libdir}/libassuan1.so
 %{_libdir}/libassuan1.la
-%{_libdir}/libassuan1-pth.la
 %{_includedir}/assuan.h
 %{_aclocaldir}/libassuan.m4
 %{_infodir}/assuan.info*
@@ -122,5 +118,4 @@ rm -rf $RPM_BUILD_ROOT
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/libassuan1.a
-%{_libdir}/libassuan1-pth.a
 %endif
